@@ -15,7 +15,7 @@
 # Запуск приложения на сервере
 ### 1. Клонируйте репозиторий проекта
 ```
-git@github.com:Patron322/foodgram-project-react.git
+git clone git@github.com:Patron322/foodgram-project-react.git
 ```
 ### 2. Перейдите в папку infra, создайте .env файл:
 
