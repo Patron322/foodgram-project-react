@@ -28,8 +28,7 @@ git@github.com:Patron322/foodgram-project-react.git
     POSTGRES_PASSWORD=postgres
     DB_HOST=db
     DB_PORT=5432
-
-```
+   
 ### 3. В папке infra выполните команды:
 ```
 - docker-compose up -d --build
@@ -43,8 +42,8 @@ git@github.com:Patron322/foodgram-project-react.git
 ## По желанию можно наполнить базу данных:
 ```
 docker-compose exec backendb python manage.py loaddata fixtures.json
-```
-### Админка:
+
+#### Админка:
 
 Логин: admin
 Пароль: admin
