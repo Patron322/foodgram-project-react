@@ -30,17 +30,17 @@ git@github.com:Patron322/foodgram-project-react.git
     DB_PORT=5432
    
 ### 3. В папке infra выполните команды:
-```
+
 - docker-compose up -d --build
-```
+
 - docker-compose exec backend python manage.py makemigrations
-```
+
 - docker-compose exec backend python manage.py migrate
-```
+
 - docker-compose exec backend python manage.py collectstatic --no-input
-```
+
 ## По желанию можно наполнить базу данных:
-```
+
 docker-compose exec backendb python manage.py loaddata fixtures.json
 
 #### Админка:
