@@ -39,11 +39,11 @@ git@github.com:Patron322/foodgram-project-react.git
 
 - docker-compose exec backend python manage.py collectstatic --no-input
 
-## По желанию можно наполнить базу данных:
+### По желанию можно наполнить базу данных:
 
-docker-compose exec backendb python manage.py loaddata fixtures.json
+- docker-compose exec backendb python manage.py loaddata fixtures.json
 
 #### Админка:
 
-Логин: admin
-Пароль: admin
+- Логин: admin
+- Пароль: admin
