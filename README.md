@@ -1,6 +1,6 @@
 # Проект Foodgram
-Сайт Foodgram, «Продуктовый помощник».
-Сервис для публикации рецептов. Пользователь может просматривать рецепты и скачивать лист ингридиентов для них.
+**Сайт Foodgram, «Продуктовый помощник».
+Сервис для публикации рецептов. Пользователь может просматривать рецепты и скачивать лист ингридиентов для них.**
 
 [Ссылка на сайт](http://51.250.110.250)
 
@@ -13,16 +13,16 @@
 ### Технологии
 - Python 3.7
 - Django 3.2
- - Gunicorn
- - Nginx
- - Docker
- - PostgreSQL
+- Gunicorn
+- Nginx
+- Docker
+- PostgreSQL
 
 # Запуск приложения на сервере
 ### 1. Клонируйте репозиторий проекта
-```
-git clone git@github.com:Patron322/foodgram-project-react.git
-```
+
+`git clone git@github.com:Patron322/foodgram-project-react.git`
+
 ### 2. Перейдите в папку infra, создайте .env файл:
 
 ```
@@ -49,4 +49,4 @@ DB_PORT=5432
 
 ### По желанию можно наполнить базу данных:
 
-- docker-compose exec backendb python manage.py loaddata fixtures.json
+`docker-compose exec backendb python manage.py loaddata fixtures.json`
