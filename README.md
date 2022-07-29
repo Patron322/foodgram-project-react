@@ -25,16 +25,18 @@ git clone git@github.com:Patron322/foodgram-project-react.git
 ```
 ### 2. Перейдите в папку infra, создайте .env файл:
 
-`DJANGO_DEBUG = False`
-`SECRET_KEY=THIS_SECRET_DJANGO_KEY`
-`ALLOWED_HOSTS=*`
-`DB_ENGINE=django.db.backends.postgresql`
-`DB_NAME=postgres`
-`POSTGRES_USER=postgres`
-`POSTGRES_PASSWORD=postgres`
-`DB_HOST=db`
-`DB_PORT=5432`
-   
+```
+DJANGO_DEBUG = False
+SECRET_KEY=THIS_SECRET_DJANGO_KEY
+ALLOWED_HOSTS=*
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+DB_HOST=db
+DB_PORT=5432
+```
+
 ### 3. В папке infra выполните команды:
 
 - `docker-compose up -d --build`
