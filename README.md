@@ -10,7 +10,7 @@
 - email: a@a.ru
 - Пароль: admin
 
-### Технологии
+### Технологии:
 - Python 3.7
 - Django 3.2
 - Gunicorn
@@ -18,7 +18,7 @@
 - Docker
 - PostgreSQL
 
-# Запуск приложения на сервере
+# Запуск приложения на сервере:
 ### 1. Клонируйте репозиторий проекта
 
 `git clone git@github.com:Patron322/foodgram-project-react.git`
