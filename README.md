@@ -4,6 +4,12 @@
 
 [title](http://51.250.110.250)
 
+#### Админский аккаунт:
+
+- Логин: admin322
+- email: a@a.ru
+- Пароль: admin
+
 ### Технологии
 - Python 3.7
 - Django 3.2
@@ -42,9 +48,3 @@ git clone git@github.com:Patron322/foodgram-project-react.git
 ### По желанию можно наполнить базу данных:
 
 - docker-compose exec backendb python manage.py loaddata fixtures.json
-
-#### Админка:
-
-- Логин: admin322
-- email: a@a.ru
-- Пароль: admin
