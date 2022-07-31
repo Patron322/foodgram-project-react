@@ -28,7 +28,7 @@ def download_shopping_cart(self, request):
         TTFont('DejaVuSans', 'DejaVuSans.ttf', 'UTF-8'))
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = ('attachment; '
-                                       'filename="shopping_list.pdf"')
+                                        'filename="shopping_list.pdf"')
     page = canvas.Canvas(response)
     page.setFont('DejaVuSans', size=24)
     page.drawString(200, 800, 'Список покупок')
