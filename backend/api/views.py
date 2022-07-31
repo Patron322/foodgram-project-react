@@ -4,6 +4,7 @@ from djoser.serializers import SetPasswordSerializer
 from recipe.models import (Favorites, Follow, Ingredient, Recipe,
                            ShoppingCart, Tag)
 from rest_framework import generics, permissions, viewsets
+from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.status import (HTTP_201_CREATED, HTTP_204_NO_CONTENT,
