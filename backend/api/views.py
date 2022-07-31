@@ -1,15 +1,9 @@
-from django.db.models import Sum
-from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from djoser.serializers import SetPasswordSerializer
 from recipe.models import (Favorites, Follow, Ingredient, Recipe,
-                           RecipeIngredient, ShoppingCart, Tag)
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfgen import canvas
+                           ShoppingCart, Tag)
 from rest_framework import generics, permissions, viewsets
-from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.status import (HTTP_201_CREATED, HTTP_204_NO_CONTENT,
@@ -23,6 +17,7 @@ from .serializers import (AddFavoritesSerializer, AddFollowSerializer,
                           CustomUserCreateSerializer, CustomUserSerializer,
                           IngredientSerializer, RecipeSerializer,
                           TagSerializer)
+from .utils import download_shopping_cart
 
 
 class TagViewSet(viewsets.ReadOnlyModelViewSet):
@@ -102,39 +97,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 status=HTTP_400_BAD_REQUEST
             )
 
-    @action(detail=False, methods=['get'],
-            permission_classes=[permissions.IsAuthenticated])
-    def download_shopping_cart(self, request):
-        user = request.user
-        ingredients = RecipeIngredient.objects.filter(
-            recipe_id__cart_recipe__user=user).values_list(
-                'ingredient__name',
-                'ingredient__measurement_unit').annotate(Sum('amount'))
-
-        shopping_list = []
-        for ingredient in ingredients:
-            shopping_list.append(
-                f'{ingredient[0].capitalize()} '
-                f'({ingredient[1]}) - {ingredient[2]}'
-            )
-
-        pdfmetrics.registerFont(
-            TTFont('DejaVuSans', 'DejaVuSans.ttf', 'UTF-8'))
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = ('attachment; '
-                                           'filename="shopping_list.pdf"')
-        page = canvas.Canvas(response)
-        page.setFont('DejaVuSans', size=24)
-        page.drawString(200, 800, 'Список покупок')
-        page.setFont('DejaVuSans', size=16)
-        height = 750
-        for item in shopping_list:
-            page.drawString(75, height, item)
-            height -= 25
-        page.showPage()
-        page.save()
-
-        return response
+        download_shopping_cart(self, request)
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -174,7 +137,6 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             serializer = AddFollowSerializer(follow,
                                              context={'request': request})
             return Response(serializer.data, status=HTTP_201_CREATED)
-
         if request.method == 'DELETE':
             user = request.user
             author = get_object_or_404(User, id=pk)

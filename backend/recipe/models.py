@@ -1,5 +1,8 @@
+from unicodedata import name
+from attr import field, fields
 from django.db import models
 from django.db.models import F, Q
+from sqlalchemy import UniqueConstraint
 from users.models import User
 
 
@@ -45,13 +48,17 @@ class Ingredient(models.Model):
         max_length=200,
         help_text='Единица измерения ингридиента')
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         ordering = ('name',)
         verbose_name = 'Ингридиент'
         verbose_name_plural = 'Ингридиенты'
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'measurement_unit'],
+                                    name='unique_ingridient')
+        ]
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -76,7 +83,6 @@ class Recipe(models.Model):
         'Картинка рецепта',
         upload_to='media/',
         max_length=None,
-        blank=True,
         null=True
     )
     tags = models.ManyToManyField(
